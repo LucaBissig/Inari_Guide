@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inari Winterreise</title>
+<meta name="description" content="Persönlicher Lappland-Guide für Inari im Februar: Erlebnisse, Route, Nordlichtstrategie, Budget und Packliste.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#080b1a;
+    --deep:#101c3f;
+    --panel:#0d1630;
+    --teal:#2dd4bf;
+    --violet:#8b6bf2;
+    --blue:#38bdf8;
+    --fire:#f2a65a;
+    --ice:#eef6ff;
+    --text:#f4f7fb;
+    --muted:#9fb0c8;
+    --darktext:#0c1730;
+    --card:rgba(255,255,255,.055);
+    --card-strong:rgba(255,255,255,.09);
+    --line:rgba(255,255,255,.14);
+    --shadow:0 30px 80px rgba(2,6,20,.5);
+    --radius:26px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--night);
+    color:var(--text);
+    line-height:1.62;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:"Fraunces","Georgia",serif;font-weight:600;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:8px}
+
+  /* ---------- Ambient background ---------- */
+  .bg{position:fixed;inset:0;z-index:-3;
+    background:
+      radial-gradient(ellipse 60% 40% at 15% 8%, rgba(45,212,191,.28), transparent 60%),
+      radial-gradient(ellipse 55% 42% at 85% 4%, rgba(56,189,248,.24), transparent 62%),
+      radial-gradient(ellipse 50% 35% at 55% -4%, rgba(139,107,242,.22), transparent 65%),
+      linear-gradient(180deg,#020512 0%,#080b1a 32%,#101c3f 100%);
+  }
+  .bg-noise{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.05;
+    background-image:radial-gradient(circle,#fff 1px,transparent 1px);
+    background-size:3px 3px;
+  }
+  .snow{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.34;
+    background-image:radial-gradient(circle,#fff 1px,transparent 1px),radial-gradient(circle,#fff 1px,transparent 1px),radial-gradient(circle,#fff 1px,transparent 1px);
+    background-size:120px 120px,180px 180px,260px 260px;
+    background-position:0 0,40px 70px,120px 30px;
+    animation:snow 26s linear infinite;
+  }
+  @keyframes snow{to{background-position:0 900px,40px 980px,120px 760px}}
+  @media (prefers-reduced-motion:reduce){
+    .snow,.ribbon,.twinkle,.shimmer,*{animation-duration:.001ms!important;animation-iteration-count:1!important}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- Aurora ribbon divider (signature motif) ---------- */
+  .ribbon-divider{width:100%;height:34px;margin:0 auto;max-width:1180px;opacity:.85}
+  .ribbon-divider path{animation:driftX 9s ease-in-out infinite alternate}
+  .ribbon-divider path:nth-child(2){animation-delay:.6s}
+  .ribbon-divider path:nth-child(3){animation-delay:1.2s}
+  @keyframes driftX{from{transform:translateX(-10px)}to{transform:translateX(10px)}}
+
+  /* ---------- Nav ---------- */
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(3,6,20,.6);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1180px;margin:auto;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 20px}
+  .brand{font-family:"Fraunces",serif;font-weight:600;letter-spacing:0;display:flex;align-items:center;gap:10px;font-size:1.05rem}
+  .brand svg{width:20px;height:20px;flex-shrink:0}
+  .nav-links{display:flex;gap:6px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{font-size:.9rem;color:var(--muted);padding:8px 12px;border-radius:999px;border:1px solid transparent;font-weight:500}
+  .nav-links a:hover{color:#fff;border-color:var(--line);background:rgba(255,255,255,.07)}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:92vh;display:grid;place-items:center;padding:76px 20px 40px;position:relative}
+  .hero-inner{max-width:1160px;width:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
+  .eyebrow{display:inline-flex;gap:8px;align-items:center;width:max-content;padding:8px 14px;border:1px solid var(--line);background:rgba(255,255,255,.07);border-radius:999px;color:#d7ecff;font-weight:600;font-size:.86rem;margin-bottom:22px;font-family:"Inter"}
+  h1{font-size:clamp(2.6rem,6.4vw,5.6rem);line-height:.98;margin-bottom:20px}
+  h1 em{font-style:normal;background:linear-gradient(100deg,var(--teal),var(--blue) 55%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .our-trip{color:var(--fire);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;margin-bottom:8px;font-family:"Inter"}
+  .travellers{font-family:"Fraunces",serif;font-size:1.14rem;color:var(--ice);margin-bottom:14px}
+  .travellers strong{font-weight:600;background:linear-gradient(100deg,var(--teal),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{font-size:clamp(1.04rem,1.7vw,1.24rem);color:var(--muted);max-width:640px;margin-bottom:22px}
+  .welcome-note{
+    position:relative;
+    display:flex;gap:14px;align-items:center;
+    background:linear-gradient(135deg,rgba(45,212,191,.1),rgba(139,107,242,.08));
+    border:1px solid transparent;
+    background-clip:padding-box;
+    border-radius:20px;
+    padding:16px 20px;
+    max-width:520px;margin-bottom:30px;
+    box-shadow:0 14px 34px rgba(2,6,20,.35);
+  }
+  .welcome-note::before{
+    content:"";position:absolute;inset:0;border-radius:20px;padding:1px;
+    background:linear-gradient(135deg,var(--teal),var(--violet));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+    pointer-events:none;opacity:.5;
+  }
+  .welcome-icon{
+    flex-shrink:0;width:38px;height:38px;border-radius:12px;
+    display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--teal),var(--blue));
+    box-shadow:0 8px 20px rgba(45,212,191,.35);
+  }
+  .welcome-icon svg{width:20px;height:20px;color:#03111f}
+  .welcome-note p{color:#eaf3fc;font-size:.96rem;font-style:italic;line-height:1.5}
+  .welcome-note .signoff{display:inline-block;margin-left:8px;font-family:"Fraunces",serif;font-style:normal;font-weight:600;color:var(--teal);white-space:nowrap}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:999px;font-weight:700;font-size:.94rem;border:1px solid var(--line);box-shadow:0 16px 40px rgba(0,0,0,.2)}
+  .btn.primary{background:var(--ice);color:var(--darktext)}
+  .btn.ghost{background:rgba(255,255,255,.07);color:#fff}
+
+  /* Hero illustration: aurora over fells */
+  .hero-visual{position:relative;border-radius:32px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#040a1a}
+  .hero-visual svg{display:block;width:100%;height:auto}
+  .aurora-band{filter:blur(7px);mix-blend-mode:screen}
+  .aurora-band.a1{animation:shimmer 7s ease-in-out infinite}
+  .aurora-band.a2{animation:shimmer 8.5s ease-in-out infinite 1.1s}
+  .aurora-band.a3{animation:shimmer 6.2s ease-in-out infinite .5s}
+  @keyframes shimmer{0%,100%{opacity:.5;transform:translateY(0) scaleY(1)}50%{opacity:.95;transform:translateY(-5px) scaleY(1.05)}}
+  .star{animation:twinkle 3.4s ease-in-out infinite}
+  .star:nth-child(odd){animation-duration:4.2s}
+  @keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+  .trip-glance{display:flex;background:rgba(6,12,28,.82);border-top:1px solid var(--line);backdrop-filter:blur(14px)}
+  .glance-item{flex:1;display:flex;align-items:center;gap:10px;padding:16px 14px;position:relative}
+  .glance-item + .glance-item{border-left:1px solid rgba(255,255,255,.1)}
+  .glance-item svg{width:22px;height:22px;color:var(--teal);flex-shrink:0}
+  .glance-item .g-text{display:flex;flex-direction:column;line-height:1.2}
+  .glance-item .g-text span{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .glance-item .g-text strong{font-family:"Fraunces",serif;font-weight:600;font-size:1rem;color:#fff}
+
+  /* ---------- Layout helpers ---------- */
+  .container{max-width:1180px;margin:auto;padding:60px 20px}
+  .section-head{margin-bottom:26px;max-width:800px}
+  .kicker{color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem;font-family:"Inter"}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);margin-top:8px}
+  .section-head p{color:var(--muted);margin-top:10px}
+
+  /* ---------- Stats ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:-56px;position:relative;z-index:5}
+  .stat{background:var(--card-strong);border:1px solid var(--line);backdrop-filter:blur(16px);border-radius:20px;padding:18px;box-shadow:0 18px 40px rgba(0,0,0,.2)}
+  .stat strong{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.32rem;color:#fff}
+  .stat span{color:var(--muted);font-size:.92rem}
+
+  /* ---------- Cards / erlebnisse ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.18);backdrop-filter:blur(16px);position:relative;overflow:hidden;transition:border-color .2s ease,transform .2s ease}
+  .card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(255,255,255,.1),transparent 34%);pointer-events:none}
+  .card:hover{border-color:rgba(255,255,255,.3);transform:translateY(-2px)}
+  .card h3{font-size:1.26rem;margin-bottom:8px}
+  .card p,.card li{color:#cfdcec}
+  .tag{display:inline-block;margin-bottom:16px;padding:6px 11px;border-radius:999px;background:rgba(45,212,191,.14);border:1px solid rgba(45,212,191,.32);color:#a7f3d0;font-weight:700;font-size:.74rem;letter-spacing:.02em}
+  .icon{display:block;width:42px;height:42px;color:var(--teal);margin-bottom:12px}
+  .card button{position:relative;z-index:2;margin-top:16px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font-weight:700;font-size:.86rem;cursor:pointer;font-family:"Inter"}
+  .card button:hover{background:rgba(255,255,255,.16)}
+  .details{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  .details.open{display:block}
+  .details ul{margin-left:18px}
+  .details li{margin:5px 0;font-size:.94rem}
+
+  /* ---------- Timeline ---------- */
+  .timeline{display:grid;gap:14px}
+  .day{display:grid;grid-template-columns:64px 1fr;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;backdrop-filter:blur(14px)}
+  .day-no{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--teal),var(--blue));color:#03111f;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:1.28rem}
+  .day h3{margin-bottom:4px;font-size:1.14rem}
+  .day p{color:#cfdcec}
+
+  /* ---------- Split (aurora strategy) ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .glass{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;backdrop-filter:blur(14px)}
+  .glass h3{margin-bottom:12px;font-size:1.2rem;display:flex;align-items:center;gap:10px}
+  .glass h3 svg{width:22px;height:22px;color:var(--fire)}
+  .glass ul{margin-left:18px;color:#cfdcec}
+  .glass li{margin:7px 0}
+
+  /* ---------- Budget ---------- */
+  .budget-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .budget-row:last-child{border-bottom:0}
+  .budget-row label{font-weight:500}
+  .budget-row .price{color:var(--muted);font-size:.88rem}
+  .budget-row input{width:19px;height:19px;accent-color:var(--teal)}
+  .total{margin-top:20px;border-radius:20px;padding:18px;background:linear-gradient(120deg,var(--teal),var(--blue));color:#03111f;font-weight:800;font-size:1.18rem;text-align:center;font-family:"Fraunces",serif}
+
+  /* ---------- Checklist ---------- */
+  .checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .check{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;gap:11px;align-items:center;color:#e5f3ff;cursor:pointer}
+  .check:hover{border-color:rgba(255,255,255,.28)}
+  .check input{width:18px;height:18px;accent-color:var(--teal);flex-shrink:0}
+
+  /* ---------- Links ---------- */
+  /* ---------- Unterkunft ---------- */
+  .stay-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;backdrop-filter:blur(14px);box-shadow:0 20px 50px rgba(0,0,0,.18)}
+  .stay-gallery{display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;border-radius:18px;overflow:hidden;margin-bottom:22px;height:340px}
+  .stay-gallery img{width:100%;height:100%;object-fit:cover;display:block}
+  .stay-gallery img:first-child{grid-row:1/3}
+  .stay-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:14px}
+  .stay-head h3{font-size:1.5rem;margin-bottom:6px}
+  .stay-rating{display:inline-flex;align-items:center;gap:6px;background:rgba(45,212,191,.14);border:1px solid rgba(45,212,191,.32);color:#a7f3d0;padding:6px 12px;border-radius:999px;font-weight:700;font-size:.86rem;white-space:nowrap}
+  .stay-facts{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+  .stay-facts span{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.85rem;color:#dbe8f7}
+  .stay-desc{color:#cfdcec;margin-bottom:18px;max-width:720px}
+  .stay-amenities{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+  .stay-amenities span{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:.85rem;color:#dbe8f7}
+  .stay-amenities svg{width:16px;height:16px;color:var(--teal);flex-shrink:0}
+  .stay-footer{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
+  .stay-host{color:var(--muted);font-size:.9rem}
+  .stay-host strong{color:#fff}
+  @media(max-width:640px){.stay-gallery{grid-template-columns:1fr 1fr;height:auto}.stay-gallery img:first-child{grid-row:1/2;grid-column:1/3;height:200px}.stay-gallery img{height:110px}}
+
+  .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .link{background:var(--ice);color:var(--darktext);border-radius:20px;padding:20px;box-shadow:0 18px 40px rgba(0,0,0,.18)}
+  .link h3{font-size:1.06rem;margin-bottom:4px}
+  .link a{color:#0e7490;font-weight:700;display:inline-flex;align-items:center;gap:6px;margin-top:4px}
+  .link p{color:#475569;margin:4px 0 6px;font-size:.92rem}
+
+  /* ---------- Final ---------- */
+  .final{background:linear-gradient(135deg,rgba(45,212,191,.16),rgba(139,107,242,.14));border:1px solid rgba(255,255,255,.2);border-radius:32px;padding:32px;box-shadow:var(--shadow)}
+  .final h2{font-size:clamp(1.7rem,3vw,2.2rem)}
+  .final ol{margin-left:22px;margin-top:14px}
+  .final li{margin:8px 0}
+  .footer{text-align:center;color:var(--muted);padding:44px 20px 70px;font-size:.88rem}
+
+  @media(max-width:820px){
+    .hero-inner{grid-template-columns:1fr}
+    .split{grid-template-columns:1fr}
+    .day{grid-template-columns:1fr}
+    .nav-inner{align-items:flex-start;flex-direction:column}
+    .stats{margin-top:-24px}
+    .glance-item + .glance-item{border-left:0;border-top:1px solid rgba(255,255,255,.1)}
+    .trip-glance{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+  <div class="bg"></div><div class="bg-noise"></div><div class="snow"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17c2-4 4-6 8-6s6 2 8 6" stroke="url(#navg)"/><defs><linearGradient id="navg" x1="0" y1="0" x2="24" y2="0"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#8b6bf2"/></linearGradient></defs></svg>
+        Inari Winterreise
+      </a>
+      <div class="nav-links">
+        <a href="#erlebnisse">Erlebnisse</a><a href="#route">Route</a><a href="#unterkunft">Unterkunft</a><a href="#aurora">Aurora</a><a href="#budget">Budget</a><a href="#packliste">Packliste</a><a href="#links">Links</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">❄ Persönlicher Lappland-Guide · Inari · Februar</div>
+        <h1>Arktische Tage.<br><em>Magische Nächte.</em></h1>
+        <div class="our-trip">Unsere Reise</div>
+        <p class="travellers">Für <strong>Petra</strong>, <strong>Urs</strong>, <strong>Andri</strong>, <strong>Ivana</strong> &amp; <strong>Anja</strong></p>
+        <p class="lead">Ein Reiseguide für eure Inari-Reise mit Mietwagen: klare Prioritäten, Route, Nordlichtstrategie, Budget, Packliste und direkte Buchungslinks.</p>
+        <div class="welcome-note">
+          <div class="welcome-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12s4-7 8-7 8 7 8 7-4 7-8 7-8-7-8-7Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+          </div>
+          <p>Herzlich willkommen! Mit viel Freude für euch zusammengestellt.<span class="signoff">— Luca</span></p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="#erlebnisse">Highlights ansehen</a>
+          <a class="btn ghost" href="#route">Route öffnen</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration: Nordlichter über verschneiten Fjells am Inari-See">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#050915"/>
+              <stop offset="1" stop-color="#0e1c3d"/>
+            </linearGradient>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#2dd4bf" stop-opacity="0"/>
+              <stop offset=".5" stop-color="#2dd4bf" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#8b6bf2" stop-opacity="0"/>
+              <stop offset=".5" stop-color="#8b6bf2" stop-opacity=".85"/>
+              <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#38bdf8" stop-opacity="0"/>
+              <stop offset=".5" stop-color="#5eead4" stop-opacity=".8"/>
+              <stop offset="1" stop-color="#8b6bf2" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="snowcap" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#eef6ff"/>
+              <stop offset="1" stop-color="#9fb0c8"/>
+            </linearGradient>
+          </defs>
+
+          <rect width="560" height="420" fill="url(#sky)"/>
+
+          <!-- stars -->
+          <circle class="star" cx="60" cy="46" r="1.6" fill="#fff"/>
+          <circle class="star" cx="140" cy="30" r="1.2" fill="#fff"/>
+          <circle class="star" cx="240" cy="58" r="1.4" fill="#fff"/>
+          <circle class="star" cx="330" cy="34" r="1.1" fill="#fff"/>
+          <circle class="star" cx="410" cy="60" r="1.6" fill="#fff"/>
+          <circle class="star" cx="480" cy="40" r="1.2" fill="#fff"/>
+          <circle class="star" cx="510" cy="90" r="1.3" fill="#fff"/>
+          <circle class="star" cx="30" cy="100" r="1.1" fill="#fff"/>
+
+          <!-- aurora bands -->
+          <path class="aurora-band a1" d="M0,150 C90,90 160,190 260,120 C360,50 440,150 560,90 L560,0 L0,0 Z" fill="url(#g1)"/>
+          <path class="aurora-band a2" d="M0,190 C100,130 180,220 280,150 C380,80 460,190 560,130 L560,0 L0,0 Z" fill="url(#g2)" opacity=".7"/>
+          <path class="aurora-band a3" d="M0,120 C110,170 190,90 300,150 C400,200 470,110 560,160 L560,0 L0,0 Z" fill="url(#g3)" opacity=".55"/>
+
+          <!-- fells / mountains -->
+          <path d="M0,300 L70,230 L120,270 L190,200 L250,260 L330,210 L400,270 L460,225 L560,280 L560,420 L0,420 Z" fill="#141f47"/>
+          <path d="M40,262 L70,230 L95,251" fill="none" stroke="url(#snowcap)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+          <path d="M155,232 L190,200 L222,224" fill="none" stroke="url(#snowcap)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+          <path d="M296,235 L330,210 L360,233" fill="none" stroke="url(#snowcap)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
+          <path d="M430,248 L460,225 L490,246" fill="none" stroke="url(#snowcap)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+          <path d="M0,340 L90,300 L180,330 L280,295 L380,335 L470,305 L560,335 L560,420 L0,420 Z" fill="#0a1330"/>
+
+          <!-- lake reflection glints -->
+          <line x1="60" y1="370" x2="150" y2="370" stroke="#2dd4bf" stroke-opacity=".25" stroke-width="2"/>
+          <line x1="220" y1="386" x2="340" y2="386" stroke="#38bdf8" stroke-opacity=".22" stroke-width="2"/>
+          <line x1="390" y1="374" x2="480" y2="374" stroke="#8b6bf2" stroke-opacity=".2" stroke-width="2"/>
+        </svg>
+
+        <div class="trip-glance">
+          <div class="glance-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15c-1.5-.5-3-2-3-4 0-2.5 2-4 4-4 1-2 3-3 5-3 3 0 5 2 5.5 4.5 1.5.5 2.5 2 2.5 3.5 0 2.5-2 4-4.5 4"/><path d="M6.5 15c0 2.5 1.5 4 4 4h3c2.5 0 4-1.5 4-4"/></svg>
+            <div class="g-text"><span>Top-Erlebnis</span><strong>Huskys</strong></div>
+          </div>
+          <div class="glance-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14c3-3 5 3 8 0s5 3 8 0" opacity=".7"/><path d="M3 18c3-2.5 5 2.5 8 0s5 2.5 8 0" opacity=".4"/><circle cx="18" cy="6" r="1.2" fill="currentColor" stroke="none"/></svg>
+            <div class="g-text"><span>Beste Abende</span><strong>Aurora</strong></div>
+          </div>
+          <div class="glance-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5-6-10a6 6 0 0 1 12 0c0 5-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>
+            <div class="g-text"><span>Roadtrip</span><strong>Nellim</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <div class="stats">
+        <div class="stat"><strong>2 Aktivitäten buchen</strong><span>Huskysafari und Schneemobil vorab sichern</span></div>
+        <div class="stat"><strong>2–3 Aurora-Abende</strong><span>Flexibel mit Mietwagen planen</span></div>
+        <div class="stat"><strong>1 Roadtrip</strong><span>Nellim als landschaftliches Highlight</span></div>
+        <div class="stat"><strong>1 Wetterreserve</strong><span>Siida Museum flexibel einbauen</span></div>
+      </div>
+    </section>
+
+    <svg class="ribbon-divider" viewBox="0 0 1180 34" preserveAspectRatio="none">
+      <path d="M0,17 C150,2 250,32 400,17 C550,2 650,32 800,17" fill="none" stroke="#2dd4bf" stroke-opacity=".35" stroke-width="1.5"/>
+      <path d="M100,20 C250,5 350,35 500,20 C650,5 750,35 900,20" fill="none" stroke="#8b6bf2" stroke-opacity=".3" stroke-width="1.5"/>
+      <path d="M300,15 C450,0 550,30 700,15 C850,0 950,30 1100,15" fill="none" stroke="#38bdf8" stroke-opacity=".3" stroke-width="1.5"/>
+    </svg>
+
+    <section class="container" id="erlebnisse">
+      <div class="section-head">
+        <div class="kicker">Erlebnisse</div>
+        <h2>Was ihr wirklich machen solltet</h2>
+        <p>Die Karten sind bewusst priorisiert: zuerst die Erlebnisse mit höchstem Erinnerungswert, danach flexible Ergänzungen.</p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <div class="tag">Must Do</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="15.5" r="4"/>
+            <circle cx="5.5" cy="9.5" r="2"/>
+            <circle cx="10" cy="5.5" r="2"/>
+            <circle cx="14" cy="5.5" r="2"/>
+            <circle cx="18.5" cy="9.5" r="2"/>
+          </svg>
+          <h3>Huskysafari</h3>
+          <p>Das ikonische Lappland-Erlebnis. Wenn nur eine Aktivität fest gebucht wird, dann diese.</p>
+          <button onclick="toggleDetails('d1')" aria-expanded="false" aria-controls="d1">Details</button>
+          <div id="d1" class="details"><ul><li>Halbtag oder länger wählen.</li><li>Wenn möglich selbst fahren.</li><li>Früh buchen, da Februar stark nachgefragt ist.</li></ul></div>
+        </article>
+
+        <article class="card">
+          <div class="tag">Must Do</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 8.5c1.6-1.6 3.2 1.6 4.8 0S9.6 6.9 11.2 8.5s3.2 1.6 4.8 0 3.2-1.6 4.8 0" opacity=".45"/>
+            <path d="M2 11.5c1.6-1.6 3.2 1.6 4.8 0s3.2-1.6 4.8 0 3.2 1.6 4.8 0 3.2-1.6 4.8 0"/>
+            <path d="M2.5 20l3.8-6.5 2.7 2.7 3.5-5.2 3.5 5.2 2.7-2.7L22.5 20" opacity=".9"/>
+            <circle cx="19" cy="4" r="0.9" fill="currentColor" stroke="none"/>
+          </svg>
+          <h3>Nordlichter am Inari-See</h3>
+          <p>Mit Mietwagen besonders stark, weil ihr nach Wetterfenstern und dunklen Spots fahren könnt.</p>
+          <button onclick="toggleDetails('d2')" aria-expanded="false" aria-controls="d2">Details</button>
+          <div id="d2" class="details"><ul><li>Mehrere Abende offenhalten.</li><li>Wolkenlage höher gewichten als App-Werte.</li><li>Stativ, Powerbank und warme Schuhe einpacken.</li></ul></div>
+        </article>
+
+        <article class="card">
+          <div class="tag">Roadtrip</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s7-7.5 7-12a7 7 0 0 0-14 0c0 4.5 7 12 7 12Z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <h3>Nellim</h3>
+          <p>Ruhiger Ausflug mit Winterlandschaften, Fotostopps und wenig touristischem Betrieb.</p>
+          <button onclick="toggleDetails('d3')" aria-expanded="false" aria-controls="d3">Details</button>
+          <div id="d3" class="details"><ul><li>Als Halbtag oder lockeren Tagesausflug planen.</li><li>Bei klarem Wetter besonders schön.</li><li>Auch als Nordlicht-Spot geeignet.</li></ul></div>
+        </article>
+
+        <article class="card">
+          <div class="tag">Sehr empfehlenswert</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 19.5l4-7 2.5 3 3-4.5 4 5.5 2.5-3 3 6"/>
+            <path d="M4.5 19.5c1.5-1.8 3-1.8 4.5 0s3 1.8 4.5 0 3-1.8 4.5 0" opacity=".55"/>
+          </svg>
+          <h3>Schneemobilsafari</h3>
+          <p>Action, Weite und arktische Landschaft in einem Erlebnis.</p>
+          <button onclick="toggleDetails('d4')" aria-expanded="false" aria-controls="d4">Details</button>
+          <div id="d4" class="details"><ul><li>Zweite grosse Buchung neben Huskys.</li><li>Führerausweis und Versicherung prüfen.</li><li>Bei guter Sicht besonders eindrücklich.</li></ul></div>
+        </article>
+
+        <article class="card">
+          <div class="tag">Kultur</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l8 17M12 3L4 20"/>
+            <path d="M7.5 14h9"/>
+            <path d="M12 3v6" opacity=".5"/>
+          </svg>
+          <h3>Siida Museum</h3>
+          <p>Der beste kulturelle Programmpunkt in Inari und ideal bei schlechtem Wetter.</p>
+          <button onclick="toggleDetails('d5')" aria-expanded="false" aria-controls="d5">Details</button>
+          <div id="d5" class="details"><ul><li>Gut am Anreisetag.</li><li>Starke Ergänzung zur Sami-Kultur.</li><li>Flexibel als Wetterreserve.</li></ul></div>
+        </article>
+
+        <article class="card">
+          <div class="tag">Optional</div>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="6" rx="6" ry="2"/>
+            <path d="M12 8v9c0 1.5 1 2.5 2.4 2 .9-.3 1.1-1.1.7-1.8"/>
+          </svg>
+          <h3>Eisfischen</h3>
+          <p>Ruhig, authentisch und atmosphärisch auf dem gefrorenen See.</p>
+          <button onclick="toggleDetails('d6')" aria-expanded="false" aria-controls="d6">Details</button>
+          <div id="d6" class="details"><ul><li>Nicht wegen des Fangs, sondern wegen der Stimmung.</li><li>Gut als letzter flexibler Tag.</li><li>Kann mit Lunch am Feuer kombiniert werden.</li></ul></div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="container" id="route">
+      <div class="section-head">
+        <div class="kicker">Route</div>
+        <h2>Empfohlener 5-Tage-Plan</h2>
+        <p>Gebuchte Highlights plus flexible Abende für Nordlichter.</p>
+      </div>
+      <div class="timeline">
+        <div class="day"><div class="day-no">1</div><div><h3>Ankommen &amp; Siida</h3><p>Inari kennenlernen, Siida Museum besuchen, erster kurzer Aurora-Check am See.</p></div></div>
+        <div class="day"><div class="day-no">2</div><div><h3>Huskysafari</h3><p>Hauptaktivität des Tages. Abend bewusst frei halten.</p></div></div>
+        <div class="day"><div class="day-no">3</div><div><h3>Nellim Roadtrip</h3><p>Fotostopps, ruhige Landschaften, abends bei klarer Sicht nochmals raus.</p></div></div>
+        <div class="day"><div class="day-no">4</div><div><h3>Schneemobil</h3><p>Actionreicher Tag in der Winterlandschaft, danach ruhiger Abend.</p></div></div>
+        <div class="day"><div class="day-no">5</div><div><h3>Flex-Tag</h3><p>Eisfischen, Schneeschuhwandern oder Rentierfarm. Letzte Aurora-Chance.</p></div></div>
+      </div>
+    </section>
+
+    <section class="container" id="aurora">
+      <div class="section-head">
+        <div class="kicker">Aurora</div>
+        <h2>Nordlichtstrategie mit Mietwagen</h2>
+        <p>Nicht alles als Tour buchen. Eure Flexibilität ist ein Vorteil.</p>
+      </div>
+      <div class="split">
+        <div class="glass">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v4M12 17v4M4 12h4M16 12h4M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/></svg>Vor dem Losfahren</h3>
+          <ul><li>Wolkenlage prüfen</li><li>Mehrere dunkle Spots merken</li><li>Auto voll geladen / betankt halten</li><li>Stativ, Powerbank, Tee und Handschuhe vorbereiten</li></ul>
+        </div>
+        <div class="glass">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>Gute Ausgangspunkte</h3>
+          <ul><li>Offene Stellen am Inari-See</li><li>Dunkle Strassenabschnitte ausserhalb des Dorfs</li><li>Richtung Nellim bei klarer Sicht</li><li>Keine Lichtquellen direkt im Blickfeld</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="budget">
+      <div class="section-head">
+        <div class="kicker">Budget</div>
+        <h2>Aktivitätenbudget</h2>
+        <p>Richtwerte pro Person. Einfach anklicken und Summe prüfen.</p>
+      </div>
+      <div class="glass">
+        <div class="budget-row"><label for="b1">Huskysafari</label><span class="price">~210 CHF</span><input id="b1" class="budget" type="checkbox" value="210" onchange="calcBudget()"></div>
+        <div class="budget-row"><label for="b2">Schneemobilsafari</label><span class="price">~180 CHF</span><input id="b2" class="budget" type="checkbox" value="180" onchange="calcBudget()"></div>
+        <div class="budget-row"><label for="b3">Geführte Nordlichttour</label><span class="price">~145 CHF</span><input id="b3" class="budget" type="checkbox" value="145" onchange="calcBudget()"></div>
+        <div class="budget-row"><label for="b4">Siida Museum</label><span class="price">~17 CHF</span><input id="b4" class="budget" type="checkbox" value="17" onchange="calcBudget()"></div>
+        <div class="budget-row"><label for="b5">Eisfischen</label><span class="price">~125 CHF</span><input id="b5" class="budget" type="checkbox" value="125" onchange="calcBudget()"></div>
+        <div class="total">Total: <span id="budgetTotal">0</span> CHF pro Person</div>
+      </div>
+    </section>
+
+    <section class="container" id="packliste">
+      <div class="section-head">
+        <div class="kicker">Packliste</div>
+        <h2>Arktis-Checkliste</h2>
+        <p>Die Häkchen bleiben lokal im Browser gespeichert.</p>
+      </div>
+      <div class="checklist">
+        <label class="check"><input type="checkbox" class="pack"> Thermounterwäsche</label>
+        <label class="check"><input type="checkbox" class="pack"> Warme Jacke</label>
+        <label class="check"><input type="checkbox" class="pack"> Schneehose</label>
+        <label class="check"><input type="checkbox" class="pack"> Warme Handschuhe</label>
+        <label class="check"><input type="checkbox" class="pack"> Mütze / Buff</label>
+        <label class="check"><input type="checkbox" class="pack"> Wollsocken</label>
+        <label class="check"><input type="checkbox" class="pack"> Handwärmer</label>
+        <label class="check"><input type="checkbox" class="pack"> Powerbank</label>
+        <label class="check"><input type="checkbox" class="pack"> Kamera / Stativ</label>
+        <label class="check"><input type="checkbox" class="pack"> Stirnlampe</label>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="final">
+        <h2>Meine klare Empfehlung</h2>
+        <ol>
+          <li>Huskysafari und Schneemobil vorab buchen.</li>
+          <li>Nordlichter individuell mit dem Mietwagen verfolgen.</li>
+          <li>Nellim als schönsten Roadtrip einplanen.</li>
+          <li>Siida Museum flexibel als Wetterreserve nutzen.</li>
+          <li>Nicht jeden Tag verplanen, weil Wetter und Licht in Lappland entscheidend sind.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="container" id="unterkunft">
+      <div class="section-head">
+        <div class="kicker">Unterkunft</div>
+        <h2>Saariselkä Kiilopää Rakka</h2>
+        <p>Eure Basis für die Reise: eine frisch fertiggestellte Villa direkt am Berg Kiilopää.</p>
+      </div>
+      <div class="stay-card">
+        <div class="stay-gallery">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1496165638036791495/original/2f84b742-7ec5-463b-90a1-1d627b2c978c.jpeg?im_w=720" alt="Aussenansicht der Villa Kiilopää Rakka im Winter">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTQ5NjE2NTYzODAzNjc5MTQ5NQ==/original/7031cab4-dce1-4a38-878d-1328d934b792.jpeg?im_w=720" alt="Wohnbereich der Villa">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTQ5NjE2NTYzODAzNjc5MTQ5NQ==/original/e5a9a9d6-1eee-4fa4-a1f5-5df48a88e571.jpeg?im_w=720" alt="Küche der Villa">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1496165638036791495/original/b4777512-1345-4840-974e-c52a1d0f1d0a.jpeg?im_w=720" alt="Landschaftsfenster mit Naturblick">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1496165638036791495/original/ca594c3c-5ce5-4c96-aee7-537861947a39.jpeg?im_w=720" alt="Sauna der Villa">
+        </div>
+
+        <div class="stay-head">
+          <div>
+            <h3>Ganze Villa in Inari, Lappland</h3>
+            <p style="color:var(--muted);font-size:.92rem">Nahe Kiilopää · 8 Gäste · Gastgeber: Mikko</p>
+          </div>
+          <div class="stay-rating">★ 4,92 · 12 Bewertungen · Gäste-Favorit</div>
+        </div>
+
+        <div class="stay-facts">
+          <span>8 Gäste</span>
+          <span>3 Schlafzimmer</span>
+          <span>6 Betten</span>
+          <span>1,5 Badezimmer</span>
+        </div>
+
+        <p class="stay-desc">Eine gerade fertiggestellte, moderne Villa direkt neben dem Berg Kiilopää, keine 10 Gehminuten vom Nationalpark Urho Kekkonen entfernt. Grosse Panoramafenster, eine offene Wohnküche und eine eigene Sauna machen sie zur perfekten ruhigen Basis für die Gruppe. Im Innenhof gibt's einen Feuerplatz für Grillabende unter freiem Himmel – ideal, um zwischen den Aktivitäten auch mal runterzukommen.</p>
+
+        <div class="stay-amenities">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h16M4 8v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8M4 8l2-4h12l2 4"/></svg>Voll ausgestattete Küche</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12.5a7 7 0 0 1 14 0M8.5 15.5a3.5 3.5 0 0 1 7 0M12 18.5v.01"/></svg>Schnelles WLAN</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17h18M5 17V9a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8M9 17v2M15 17v2"/></svg>Kostenloser Parkplatz</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V5a2 2 0 0 1 2-2h2M18 9V5a2 2 0 0 0-2-2h-2M4 12h16M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Eigene Sauna</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v6m0 0-3-3m3 3 3-3M5 14a7 7 0 0 1 14 0v6H5v-6Z"/></svg>Ladestation E-Auto</span>
+        </div>
+
+        <div class="stay-footer">
+          <span class="stay-host">Gastgeber: <strong>Mikko</strong> · Check-in ab 16:00 · Check-out vor 11:00</span>
+          <a class="btn primary" href="https://www.airbnb.de/rooms/1496165638036791495" target="_blank" rel="noopener">Auf Airbnb ansehen →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="links">
+      <div class="section-head">
+        <div class="kicker">Links</div>
+        <h2>Buchung &amp; Karten</h2>
+        <p>Direkte Links für Planung unterwegs.</p>
+      </div>
+      <div class="links">
+        <div class="link"><h3>Visit Inari</h3><p>Lokale Aktivitätenübersicht.</p><a href="https://visitinari.fi/activities/" target="_blank" rel="noopener">Website öffnen →</a></div>
+        <div class="link"><h3>GetYourGuide Inari</h3><p>Touren mit Bewertungen.</p><a href="https://www.getyourguide.com/inari-l245909/" target="_blank" rel="noopener">Touren ansehen →</a></div>
+        <div class="link"><h3>Northern Lights Riders</h3><p>Schneemobil, Nordlichter, Eisfischen.</p><a href="https://northernlightsriders.fi/" target="_blank" rel="noopener">Anbieter öffnen →</a></div>
+        <div class="link"><h3>Siida Museum</h3><p>Sami-Kultur und arktische Natur.</p><a href="https://siida.fi/en/" target="_blank" rel="noopener">Museum öffnen →</a></div>
+        <div class="link"><h3>Nellim Karte</h3><p>Roadtrip-Ziel ab Inari.</p><a href="https://maps.google.com/?q=Nellim+Finland" target="_blank" rel="noopener">Karte öffnen →</a></div>
+        <div class="link"><h3>Lake Inari Karte</h3><p>Startpunkt für Aurora-Spots.</p><a href="https://maps.google.com/?q=Lake+Inari+Finland" target="_blank" rel="noopener">Karte öffnen →</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Inari Winterreise · persönlicher Guide · GitHub Pages ready</footer>
+
+  <script>
+    function toggleDetails(id){
+      var el = document.getElementById(id);
+      var open = el.classList.toggle('open');
+      var btn = document.querySelector('[aria-controls="'+id+'"]');
+      if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    function calcBudget(){
+      var total = 0;
+      document.querySelectorAll('.budget').forEach(function(box){ if(box.checked) total += Number(box.value); });
+      document.getElementById('budgetTotal').textContent = total;
+      localStorage.setItem('inariBudgetTotal', total);
+    }
+    function savePack(){
+      var states = [];
+      document.querySelectorAll('.pack').forEach(function(box){ states.push(box.checked); });
+      localStorage.setItem('inariPack', JSON.stringify(states));
+    }
+    function loadPack(){
+      var states = JSON.parse(localStorage.getItem('inariPack') || '[]');
+      document.querySelectorAll('.pack').forEach(function(box, i){
+        box.checked = states[i] || false;
+        box.addEventListener('change', savePack);
+      });
+    }
+    loadPack();
+  </script>
+</body>
+</html>
